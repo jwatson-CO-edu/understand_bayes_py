@@ -83,3 +83,7 @@ while( mv < thresh ):
     iterDist = roll_and_update( cDie, iterDist )
     mk, mv   = max_dict_key_val( iterDist )
     print()
+
+# 4. Check the results
+print( "\nPredicted: ____ d" + str(mk) )
+print( "The answer was:", cDie )
