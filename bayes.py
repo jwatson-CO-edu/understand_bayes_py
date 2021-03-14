@@ -50,3 +50,27 @@ def prob_outcome_given_evidence( outcomeOdds_ , attrDist_, outcome, trueFals, ev
 
     # N. Fetch prob
     return normDist[ outcome ]
+
+
+def update_odds_with_evidence( prevalence, testPower, evdnc ):
+    """ Compute a new odds of an outcome """
+    evPos   = evdnc
+    evNeg   = 1 - evdnc
+    oddsPos = prevalence[evPos]/prevalence[evNeg] * testPower[evdnc][evPos]/testPower[evdnc][evNeg]
+    oddsNeg = float('nan')
+    if oddsPos > 1:
+        oddsNeg = 1.0
+    elif oddsPos > 0:
+        oddsNeg = 1 / oddsPos
+        oddsPos = 1.0
+    return {
+        evPos : oddsPos ,
+        evNeg : oddsNeg ,
+    }
+
+
+def get_prob_from_odds( odds, outcome ):
+    """ Get the probability of `outcome` given the `odds` """
+    oddFor = odds[ outcome   ]
+    oddAgn = odds[ 1-outcome ]
+    return oddFor / (oddFor + oddAgn)

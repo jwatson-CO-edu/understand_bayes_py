@@ -1,4 +1,5 @@
 from pprint import pprint
+from bayes import *
 """ 
 ##### Bayes Experiment 01 #####
 The medical test paradox: Can redesigning Bayes rule help? by 3Blue1Brown
@@ -9,7 +10,7 @@ Step 2: Compute Bayes Factor
 Step 3: Multiply
 """
 
-from bayes import *
+
 
 outcomeOdds = {
     1 :  1 ,
