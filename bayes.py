@@ -1,4 +1,43 @@
+########## INIT ###################################################################################
+
 from pprint import pprint
+from random import random
+
+########## UTILITIES ##############################################################################
+
+
+def rand_bernoulli( probTrue ):
+    """ Return `1` with `probTrue`, Otherwise return 0 with 1 - `probTrue` """
+    return ( 1 if ( random() <= probTrue ) else 0 )
+
+
+def isnumeric( numStr ):
+    """ Hack to determine if a non-unicode string is numeric or not """
+    numStr = str( numStr )
+    try:
+        int( numStr )
+        return True
+    except:
+        try:
+            float( numStr )
+            return True
+        except:
+            return False
+
+
+def max_dict_key_val( dct ):
+    """ Return the key with the highest numeric value """
+    maxVal = float('-inf')
+    maxKey = None
+    for k, v in dct.items():
+        if isnumeric( v ) and (v > maxVal):
+            maxVal = v 
+            maxKey = k
+    return maxKey, maxVal
+
+
+
+########## STATISTICS #############################################################################
 
 def total_pop( odds ):
     """ Sum over all categories in the prior odds """
@@ -33,6 +72,8 @@ def joint_distribution( outcomeOdds_ , attrDist_ ):
             joint[k][evidence][0] = priorDist[k] * ( 1 - attrDist_[ evidence ][ k ] )
     return joint
 
+
+########## BAYES HELPERS ##########################################################################
 
 def prob_outcome_given_evidence( outcomeOdds_ , attrDist_, outcome, trueFals, evidence ):
     """ What is the probability that `outcome` is `trueFals`, given the `evidence` ? """
