@@ -43,7 +43,6 @@ for d in cup:
 
 priors = normalize_dist( priors )
 pprint( priors )
-max_dict_key_val
 
 def prob_outcome_per_type( outcome ):
     """ Build a table of the likelihood of this outcome on each type of die """
