@@ -18,11 +18,11 @@ outcomeOdds = {
 }
 
 testEfficacy = {
-    1 : {
+    1 : { # Indicates Positive
         1 :  9/ 10 , # True  Positives
         0 : 89/990 , # False Positives
     },
-    0 : {
+    0 : { # Indicates Negative
         1 : 1 -  9/ 10 , # False Negatives = 1 - True  Positives
         0 : 1 - 89/990 , # True  Negatives = 1 - False Positives
     },
